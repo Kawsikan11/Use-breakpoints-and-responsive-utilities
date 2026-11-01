@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina Photography</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white">
+
+  <!-- Navbar -->
+  <nav class="bg-[#100705] text-white px-5 md:px-10 py-5 flex items-center justify-between relative z-20">
+    
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3">
+      <span class="border border-white rounded-full w-11 h-11 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5">
+          <rect x="3" y="6" width="18" height="14" rx="2"/>
+          <path d="M8 6l2-3h4l2 3"/>
+          <circle cx="12" cy="13" r="3.5"/>
+        </svg>
+      </span>
+      <span class="font-serif text-2xl md:text-3xl tracking-[0.15em]">LUMINA</span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <div class="hidden md:flex items-center gap-8 lg:gap-12 font-serif text-lg">
+      <a href="#" class="hover:text-red-400 transition">Home</a>
+      <a href="#" class="hover:text-red-400 transition">Portfolio</a>
+      <a href="#" class="hover:text-red-400 transition">About</a>
+      <a href="#" class="hover:text-red-400 transition">Stories</a>
+      <a href="#" class="hover:text-red-400 transition">Contact</a>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button id="menuBtn" class="md:hidden text-white text-3xl"
+      aria-label="Toggle navigation" aria-expanded="false">
+      <span id="menuIcon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile navigation -->
+  <div id="mobileMenu"
+    class="hidden fixed inset-0 top-[80px] bg-white z-10
+           flex-col items-center justify-center gap-8 font-serif text-2xl">
+    <a href="#" class="text-red-700">Home</a>
+    <a href="#" class="hover:text-red-700">Portfolio</a>
+    <a href="#" class="hover:text-red-700">About</a>
+    <a href="#" class="hover:text-red-700">Stories</a>
+    <a href="#" class="hover:text-red-700">Contact</a>
+  </div>
+
+  <!-- Hero section -->
+  <main class="bg-[#100705] min-h-[calc(100vh-80px)] p-5 md:p-10
+              flex items-center justify-center overflow-hidden">
+
+    <section class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2
+                    gap-8 md:gap-12 items-center">
+
+      <!-- Hero text -->
+      <div class="text-white text-center md:text-left order-2 md:order-1">
+        <p class="uppercase tracking-[0.3em] text-sm text-gray-300 mb-5">
+          Capturing timeless moments
+        </p>
+
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl
+                   leading-tight mb-6">
+          Every moment<br>
+          tells a <span class="italic text-amber-200">story.</span>
+        </h1>
+
+        <p class="text-gray-300 max-w-md mx-auto md:mx-0 leading-relaxed mb-8">
+          Discover the beauty of life's most precious moments through
+          our lens. Elegant photography, timeless memories.
+        </p>
+
+        <a href="#portfolio"
+          class="inline-block border border-white px-8 py-3
+                 hover:bg-white hover:text-black transition">
+          Explore Portfolio
+        </a>
+      </div>
+
+      <!-- Hero images -->
+      <div class="relative order-1 md:order-2 h-[420px] sm:h-[520px]">
+
+        <!-- Main image -->
+        <img
+          src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=85"
+          alt="Elegant gold wedding rings"
+          class="absolute right-0 top-0 w-[75%] h-[90%]
+                 object-cover">
+
+        <!-- Overlapping image -->
+        <img
+          src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=85"
+          alt="Romantic wedding photography"
+          class="absolute left-0 bottom-0 w-[55%] h-[48%]
+                 object-cover border-4 border-[#100705] shadow-xl">
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const menuIcon = document.getElementById("menuIcon");
+
+    let isOpen = false;
+
+    menuBtn.addEventListener("click", () => {
+      isOpen = !isOpen;
+
+      // Ternary operator to toggle menu appearance
+      mobileMenu.classList.toggle("hidden", !isOpen);
+      mobileMenu.classList.toggle("flex", isOpen);
+
+      menuIcon.textContent = isOpen ? "✕" : "☰";
+      menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    // Close mobile menu after selecting a link
+    mobileMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        isOpen = false;
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+        menuIcon.textContent = isOpen ? "✕" : "☰";
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+
+</body>
+</html>
